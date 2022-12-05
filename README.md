@@ -1,2 +1,2 @@
 # notesapp
-NotesApp main repository
+Is app where u can jounral everything
