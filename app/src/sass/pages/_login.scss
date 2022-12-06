@@ -108,6 +108,7 @@
                 @include FlexCenter;
 
                 .buttonRegister{
+                    @include FlexCenter;
                     height: 2.2em;
                     width: 7em;
                     background-color:#2d95f5;
@@ -115,6 +116,7 @@
                     font-weight: bold;
                     border: none;
                     border-radius: 10px;
+                    text-decoration: none;
                 }
             }
         }

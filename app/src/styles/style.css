@@ -114,6 +114,9 @@
   align-items: center;
 }
 .form-Main .grid .btn .buttonRegister {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 2.2em;
   width: 7em;
   background-color: #2d95f5;
@@ -121,6 +124,7 @@
   font-weight: bold;
   border: none;
   border-radius: 10px;
+  text-decoration: none;
 }
 
 @media (min-width: 43.75em) {
