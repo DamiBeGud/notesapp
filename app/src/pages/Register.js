@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import { nanoid } from 'nanoid'
 
 const Register = ()=>{
@@ -26,17 +27,17 @@ const Register = ()=>{
             headers:{"Content-Type": "application/json"},
             body: JSON.stringify(info)
         })
-        // .then(response => response.json())
-        // .then(data=> {
-        //     console.log(data)
-        //     setRegistrationSuccess(prev => prev=data.response)
-        // })
         .then(response => response.json())
-        .then(data=> console.log(data.response))
+        .then(data=> {
+            console.log('response is :' + data)
+            setRegistrationSuccess(prev => prev=data)
+        })
+        // .then(response => response.json())
+        // .then(data=> console.log(data.response))
     }
     useEffect(()=>{
         registrationSuccess === true ? navigate('/'):console.log('Registration wasnt successfull')
-        console.log(registrationSuccess)
+        console.log('state is ' + registrationSuccess)
     },[registrationSuccess])
     return (
         <form>
@@ -51,6 +52,7 @@ const Register = ()=>{
             <input type="password" name="password" id="password" onChange={handleChange}/>
 
             <button type="button" onClick={()=>handleClick(regtrationInfo)}>Register</button>
+            <Link to='/'>Login</Link>
         </form>
     )
 }
