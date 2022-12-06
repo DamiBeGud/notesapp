@@ -48,16 +48,30 @@ const Login = ()=>{
         //     <Link to='/register'>Register</Link>
         // </form>
 
-        <form>
-        <h1>Login</h1>
-        <label htmlFor="email">Email</label>
-        <input type="email" name="email" id="email" />
+        <form className='form-Main'>
+            <div className='heroName'>
+            <h1 className='appName'>Journly</h1>
+            <p className='description'>An app made for you and your notes</p>
+            </div>
+        <div className='grid'>
+            <div className='InputEmail'>
+                <label htmlFor="email" className='textLabels'>Email</label>
+                <input type="email" name="email" id="email" />
+            </div>
+            <div className='InputPass'>
+                <label htmlFor="password" className='textLabels'>Password</label>
+                <input type="password" name="password" id="password" />
+            </div>
+        <button type="button" className='buttonLogin'>Login</button>
+            <div className='centerOr'>
+                <div className='or'>Or</div>
+            </div>
+            
+        <div className='btn'>        
+            <button type="button" className='buttonRegister'>Sign Up</button>
+        </div>
 
-        <label htmlFor="password">Password</label>
-        <input type="password" name="password" id="password" />
-
-        <button type="button" >Login</button>
-
+        </div>
         </form>
     )
 }

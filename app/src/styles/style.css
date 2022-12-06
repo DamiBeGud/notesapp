@@ -1,0 +1,130 @@
+@font-face {
+  font-family: "Pacifico";
+  src: local("Pacifico-Regular"), url("../fonts/Pacifico-Regular.ttf") format("truetype");
+}
+* {
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+}
+
+.form-Main {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+.form-Main .heroName {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.form-Main .heroName .appName {
+  font-family: "Pacifico";
+  font-size: 3rem;
+  margin: 0.4em;
+}
+.form-Main .heroName .description {
+  margin-bottom: 2em;
+}
+.form-Main .grid {
+  display: grid;
+  border: 2px solid black;
+  border-radius: 15px;
+  padding: 1.5em;
+  width: 15em;
+}
+.form-Main .grid .inputPass {
+  display: grid;
+}
+.form-Main .grid .inputEmail {
+  display: grid;
+}
+.form-Main .grid .textLabels {
+  font-size: 1.5rem;
+  padding: 0;
+  margin: 0;
+}
+.form-Main .grid input {
+  height: 2.2em;
+  width: 16em;
+  border: none;
+  border-bottom: 1px solid black;
+  margin-bottom: 1.5em;
+  font-size: 1.3em;
+}
+.form-Main .grid input:focus {
+  outline: none;
+  border-bottom: 1px solid red;
+  transition: 0.4s ease-in;
+}
+.form-Main .grid .buttonLogin {
+  height: 2.2em;
+  background-color: #2d95f5;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+}
+.form-Main .grid .horizontal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.form-Main .grid .horizontal .horizontalLine {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  height: 1px;
+  margin-top: 1em;
+  width: 10rem;
+}
+.form-Main .grid .centerOr {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.form-Main .grid .centerOr .or {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1em;
+  font-size: 1.1em;
+}
+.form-Main .grid .centerOr .or::before {
+  content: "";
+  width: 10em;
+  margin-right: 1em;
+  border-bottom: 1px solid darkgray;
+}
+.form-Main .grid .centerOr .or::after {
+  content: "";
+  margin-left: 1em;
+  width: 10em;
+  border-bottom: 1px solid darkgray;
+}
+.form-Main .grid .btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.form-Main .grid .btn .buttonRegister {
+  height: 2.2em;
+  width: 7em;
+  background-color: #2d95f5;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+}
+
+@media (min-width: 43.75em) {
+  .form-Main {
+    background-color: aqua;
+  }
+}
