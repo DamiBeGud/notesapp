@@ -26,17 +26,17 @@ const Register = ()=>{
             headers:{"Content-Type": "application/json"},
             body: JSON.stringify(info)
         })
-        // .then(response => response.json())
-        // .then(data=> {
-        //     console.log(data)
-        //     setRegistrationSuccess(prev => prev=data.response)
-        // })
         .then(response => response.json())
-        .then(data=> console.log(data.response))
+        .then(data=> {
+            console.log('response is :' + data)
+            setRegistrationSuccess(prev => prev=data)
+        })
+        // .then(response => response.json())
+        // .then(data=> console.log(data.response))
     }
     useEffect(()=>{
         registrationSuccess === true ? navigate('/'):console.log('Registration wasnt successfull')
-        console.log(registrationSuccess)
+        console.log('state is ' + registrationSuccess)
     },[registrationSuccess])
     return (
         <form className="register__Form-Main">

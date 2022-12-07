@@ -22,14 +22,13 @@ const registerRun = async (req, res, next) =>{
             if(userExistst.length === 0){
                 
                 const register =  new Register({name: data.name,email:data.email,password:data.password})
-                
                 await register.save()
                 console.log('user added')
-                res.json()
+                res.json(true)
 
             }else{
                 console.log('User already exists')
-                res.json()
+                res.json(false)
             }
     }catch (e){
         console.log(e.message)
