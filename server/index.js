@@ -93,17 +93,29 @@ const articlesRun = async (req, res, next)=>{
     next()
 }
 
+const articleDelete = async (req,res,next) =>{
+    const deleteId = req.params
+    console.log(deleteId)
+    try {
+        const deleteArticle = await NewPost.deleteOne({_id:deleteId.articleId})
+        console.log(deleteArticle)
+        res.json(true)
+    } catch (error) {
+        console.log(error.message)
+    }
+    
+    next()
+}
+
 app.post('/', [loginRun], (req,res, next)=>{})
 
 app.post('/register', [registerRun], (req, res, next)=>{})
 
-app.post('/user/:userId',[newPost],(req,res,next)=>{
+app.post('/user/:userId',[newPost],(req,res,next)=>{})
 
-})
-app.get('/user/:userId',[articlesRun],(req,res, next)=>{
-    
-    
-})
+app.get('/user/:userId',[articlesRun],(req,res, next)=>{})
+
+app.post('/delete/:articleId',[articleDelete],(req,res,next)=>{})   
 app.listen(8080, ()=>{
     console.log(`Server is listening on port 8080....`)
 })

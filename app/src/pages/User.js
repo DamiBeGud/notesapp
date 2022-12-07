@@ -10,7 +10,7 @@ const User = ()=>{
     const[newPostToggle, setNewPostToggle] = useState(false) 
     const[articles, setArticles] = useState([])
     const[userInfo, setUserInfo] = useState()
-    const[userIdState, setUserIdState] = useState(userId)
+    const[reRender, setReRender] = useState(0)
 
     function updateArticles (info){
         setArticles(prevArticles => {
@@ -19,7 +19,10 @@ const User = ()=>{
 
     }
 
-
+    function render(){
+        setReRender(prevReRender => prevReRender + 1)
+        console.log('rerendered')
+    }
     useEffect(()=>{
         fetch(`/user/${userId}`)
         .then(res => res.json())
@@ -30,7 +33,7 @@ const User = ()=>{
             // console.log(userInfo)
             // console.log(articles)
         })
-    },[userIdState])
+    },[reRender])
 
 
     //Dinamcini kod koji pravi svaki zaseban article ili ti ga post
@@ -40,6 +43,26 @@ const User = ()=>{
     //dodao sam i jos 2 buttona za edit i delete pa cemo morati kasnije jos da razmislimo kako cemo da odradimo ovaj
     //gornji dio svakog posta mozda da izmjenimo malo pozicije morat cemo jos da razmislimo
     
+    function handleDelete(event){
+        console.log(event.target.id)
+        console.log(event.target)
+
+        const articleIndex = Number(event.target.id)
+        const articleId = {id:articles[articleIndex]._id}
+        fetch(`/delete/${articles[articleIndex]._id}`,{
+            method: 'POST',
+            mode: 'cors',
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(articleId)
+        })
+        .then(res=> res.json())
+        .then(data=>{
+            
+            data ? render():console.log(data)
+        })
+        
+    }
+
     const createArticles = articles.map((article, index) => {
         return(
             <article key={index}>
@@ -47,7 +70,7 @@ const User = ()=>{
                     <div>{article.title}</div>
                     <div>Date</div>
                     <button>Edit</button>
-                    <button>Delete</button>
+                    <button type="button" onClick={handleDelete} id={index}>Delete</button>
                 </div>
                 <div>
                     <div>
