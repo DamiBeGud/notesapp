@@ -8,6 +8,7 @@
         overflow: hidden;
         padding: 0;
         margin: 0;
+        box-sizing: border-box;
     }
     .form-Main{
         display: flex;
@@ -30,6 +31,7 @@
 
             .description{
                 margin-bottom: 2em;
+                color: darkgray;
             }
         }
         .grid{
@@ -71,17 +73,6 @@
                 font-weight: bold;
                 border: none;
                 border-radius: 10px;
-            }
-            .horizontal{
-                @include FlexCenter;
-
-                .horizontalLine{
-                    @include FlexCenter;
-                    background-color: black;
-                    height: 1px;
-                    margin-top: 1em;
-                    width: 10rem;
-                }
             }
             .centerOr{
                 @include FlexCenter;
