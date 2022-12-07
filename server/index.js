@@ -3,6 +3,7 @@ const { stringify } = require('querystring')
 const mongoose = require('mongoose')
 const User = require('./User')
 const Register = require('./Register')
+const NewPost = require('./NewPost')
 
 
 const app = express()
@@ -60,12 +61,46 @@ const loginRun = async (req, res, next)=>{
     }
 }
 
+const newPost = async (req, res, next) =>{
+    const  userId  = req.params
+    const data = req.body
+    try {
+        const newPost = new NewPost({user: userId.userId,title:data.title, text:data.text})
+        await newPost.save()
+        res.json(true)
+    } catch (error) {
+        console.log(error.message)
+        res.json(false)
+    }
+    next()
+}
+
+const articlesRun = async (req, res, next)=>{
+    const userId = req.params
+    console.log(req.params)
+    try {
+        const articles = await NewPost.find({user:userId.userId})
+        // console.log(articles)
+        console.log('Get request was successful')
+        res.json(articles)
+    } catch (error) {
+        console.log(error.message)
+        res.json(error.message)
+    }
+    next()
+}
+
 app.post('/', [loginRun], (req,res, next)=>{})
 
 app.post('/register', [registerRun], (req, res, next)=>{})
 
+app.post('/user/:userId',[newPost],(req,res,next)=>{
 
-
+})
+app.get('/user/:userId',[articlesRun],(req,res, next)=>{
+    
+    
+})
 app.listen(8080, ()=>{
     console.log(`Server is listening on port 8080....`)
 })
