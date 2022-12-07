@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 
 const NewPost = (props)=>{
     const { userId } = useParams();
+    
     const info = {
         title:"",
         text:""
@@ -16,11 +17,12 @@ const NewPost = (props)=>{
         
 
     }
-    // useEffect(()=>{
-    //     console.log(note)
-    // },[note])
+
 
     function handleClick(info){
+        props.updateArticles(info)
+        
+
         fetch(`/user/${userId}`,{
             method: 'POST',
             mode:'cors',
@@ -30,7 +32,7 @@ const NewPost = (props)=>{
         .then(response => response.json())
         .then(data=> {
             console.log(data)
-            // setLoginSuccess(prev => prev=data.response)
+            
         })
 
     }

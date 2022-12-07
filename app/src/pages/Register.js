@@ -11,6 +11,7 @@ const Register = ()=>{
     }
     const[regtrationInfo, setRegistrationInfo] = useState(info)
     const[registrationSuccess, setRegistrationSuccess] = useState(false)
+    const[emptyField, setEmptyField] = useState(false)
 
     const navigate = useNavigate()
     function handleChange(event){
@@ -20,19 +21,29 @@ const Register = ()=>{
     }
     function handleClick(info){
 
-        fetch('/register',{
-            method: 'POST',
-            mode:'cors',
-            headers:{"Content-Type": "application/json"},
-            body: JSON.stringify(info)
-        })
-        .then(response => response.json())
-        .then(data=> {
-            console.log('response is :' + data)
-            setRegistrationSuccess(prev => prev=data)
-        })
-        // .then(response => response.json())
-        // .then(data=> console.log(data.response))
+    //Get response from server if user with email already exists
+    // if he does display an error
+        const{name, email, password} = info
+        if(name !== "" && email !== "" && password !== "")
+        {
+            console.log('User added')
+            fetch('/register',{
+                method: 'POST',
+                mode:'cors',
+                headers:{"Content-Type": "application/json"},
+                body: JSON.stringify(info)
+            })
+            .then(response => response.json())
+            .then(data=> {
+                console.log('response is :' + data)
+                setRegistrationSuccess(prev => prev=data)
+            })
+        }
+        else{
+            console.log('Empty fields')
+            setEmptyField(true)
+        }
+
     }
     useEffect(()=>{
         registrationSuccess === true ? navigate('/'):console.log('Registration wasnt successfull')
@@ -57,7 +68,13 @@ const Register = ()=>{
                     <label htmlFor="password" className="register__Text-Labels">Password</label>
                     <input type="password" name="password" id="password" onChange={handleChange}/>
                 </div>
-
+             {/* Terms of Use */}
+                <div>
+                    <label htmlFor="termsOfUse" >I agree with <Link>Termes of use</Link></label> 
+                    <input type="checkbox" name="termsOfUse" id="termsOfUse" />
+                </div>
+        {/* /**************************************** *****************************************/}
+                {emptyField === true ? <p>Please make sure all fields are filled</p>: ''}
                 <button type="button" className="register__Button" onClick={()=>handleClick(regtrationInfo)}>Register</button>
                 <div className="register__Footer">
                     <p>Have an account?</p>

@@ -80,9 +80,12 @@ const articlesRun = async (req, res, next)=>{
     console.log(req.params)
     try {
         const articles = await NewPost.find({user:userId.userId})
+        const userData = await Register.find({_id:userId.userId})
+        const response = {articles, userData}
+        // console.log(response)
         // console.log(articles)
         console.log('Get request was successful')
-        res.json(articles)
+        res.json(response)
     } catch (error) {
         console.log(error.message)
         res.json(error.message)

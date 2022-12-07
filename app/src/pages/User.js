@@ -1,22 +1,37 @@
 import { useState, useEffect } from "react"
 import { useNavigate } from 'react-router-dom'
-import NewPost from "../components/NewPost"
 import {Link, useParams} from "react-router-dom"
 
+import NewPost from "../components/NewPost"
+import Name from "../components/Name"
 const User = ()=>{
+    const {userId} = useParams()
+
     const[newPostToggle, setNewPostToggle] = useState(false) 
     const[articles, setArticles] = useState([])
+    const[userInfo, setUserInfo] = useState()
+    const[userIdState, setUserIdState] = useState(userId)
 
-    const {userId} = useParams()
+    function updateArticles (info){
+        setArticles(prevArticles => {
+            return[...prevArticles, info]
+        })
+
+    }
+
 
     useEffect(()=>{
         fetch(`/user/${userId}`)
         .then(res => res.json())
         .then(data=> {
             // console.log(data)
-            setArticles(prevArticles => prevArticles = data)
+            setArticles(prevArticles => prevArticles = data.articles)
+            setUserInfo(prevUserInfo => prevUserInfo = data.userData)
+            // console.log(userInfo)
+            // console.log(articles)
         })
-    },[])
+    },[userIdState])
+
 
     //Dinamcini kod koji pravi svaki zaseban article ili ti ga post
     // pozvano je kasnije dole u kodu ali ovdje dodajes stilove koji ce da budu dinamicni :)
@@ -24,9 +39,10 @@ const User = ()=>{
     // i spremi ga u bazu podataka 
     //dodao sam i jos 2 buttona za edit i delete pa cemo morati kasnije jos da razmislimo kako cemo da odradimo ovaj
     //gornji dio svakog posta mozda da izmjenimo malo pozicije morat cemo jos da razmislimo
-    const createArticles = articles.map(article => {
+    
+    const createArticles = articles.map((article, index) => {
         return(
-            <article key={article._id}>
+            <article key={index}>
                 <div>
                     <div>{article.title}</div>
                     <div>Date</div>
@@ -42,6 +58,9 @@ const User = ()=>{
         )
     })
 
+  
+   
+
     function handleToggle(){
         setNewPostToggle(!newPostToggle)
     }
@@ -53,17 +72,31 @@ const User = ()=>{
         // ovo new post i settings cemo za ikone da mjenjamo kasnije 
         // e sada treba da odradis za ovo new post animaciju neku malu nista komplikovano al da lijepse izgleda :)
 
+
+
+
+        // Napraviti componente za user page 
+        //   1. Gornji dio gdje ce da bude slika ime i informacija 
+        //   2. navbar 
+        //   3. i eventualno articles componenta
         <main>
             <section>
                 <div>
                     <div>
-                        <img 
-                        href="https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.m.wikipedia.org%2Fwiki%2FFile%3ARed_Circle%2528small%2529.svg&psig=AOvVaw384RbAuVwYzY_zS5ecMJMt&ust=1670442391090000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCKjIhPzg5fsCFQAAAAAdAAAAABAJ"
-                        className="img"
-                        />
+                        {/* Treba napraviti place holder za sliku 
+                            Dodaj clasu neku i stavi u stilu width i to i stavi background sivo ili crno da bude za sada
+                        */}
+                        <img  />
                     </div>
                     <div>
-                        <h1>Name</h1>
+                        {/* Waiting for name replace with colored div */}
+                        {/* Wiating for name div je place holder za ime dok ga ne povuce iz baze podataka 
+                        i displeya se samo dok ne povuce ime  */}
+                        {userInfo === undefined? 
+                        <div>Waiting for name</div>
+                        :<h1>{userInfo[0].name}</h1>}
+                        
+                        {/* Napravi ovaj paragraf da bude kako bi trebalo da bude na kraju bez placeholdera to cu ja kasnije ubaciti */}
                         <p>sdjahkdj sdhajkhdsa ajkshdjkash ashjkhdkjah</p>
                     </div>
                 </div>
@@ -77,6 +110,7 @@ const User = ()=>{
             </nav>
             {newPostToggle && <NewPost
                 handleToggle={handleToggle}
+                updateArticles={updateArticles}
             />}
             <section>
                 {createArticles ? createArticles:<h1>Nothing</h1>}
