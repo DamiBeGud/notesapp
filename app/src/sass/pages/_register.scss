@@ -1,0 +1,92 @@
+/*---------------------------Register Page------------------------*/
+@use '../util' as u;
+
+@mixin FlexCenterRegister {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.register__Form-Main{
+        display: flex;
+        align-items: center;
+        background-color: #fff;
+        flex-direction: column;
+        height: 100vh;
+        width: 100vw;
+
+        .register__Hero-Name{
+            @include FlexCenterRegister;
+            flex-direction: column;
+
+            .register__Text{
+                font-family: u.$fontLogo;
+                font-size: 3rem;
+                padding-bottom: 0.6em;
+            }
+            .register__Description{
+                padding-bottom: 2em;
+                width: 15em;
+                text-align: center;
+                color: darkgray;
+            }
+        }
+        .register__Grid-Main{
+            display: grid;
+            border: 2px solid black;
+            border-radius: 15px;
+            padding: 1.5em;
+            width: 17em;
+            
+            .register__Input-Name{
+                display: grid;
+            }
+            .register__Input-Email{
+                display: grid;
+            }
+            .register__Input-Pass{
+                display: grid;
+            }
+
+            .register__Text-Labels{
+                font-size: 1.5rem;
+                padding-bottom: 1em;
+                margin: 0;
+                font-weight: bold;
+            }
+            input{
+                height: 1.8em;
+                width: 16em;
+                border:none;
+                border-bottom: 1px solid black;
+                margin-bottom: 1.5em;
+                font-size: 1.1em;
+            }
+            input:focus{
+                outline: none;
+                border-bottom: 1px solid red;
+                transition: 0.4s ease-in;
+            }
+
+            .register__Button{
+                height: 2.2em;
+                background-color:#2d95f5;
+                color: white;
+                font-weight: bold;
+                border: none;
+                border-radius: 10px;
+            }
+            .register__Footer{
+                text-align: center;
+                margin-top: 1em;
+                margin-bottom: 1em;
+
+                .register__Link{
+                    text-decoration: none;
+                    color: #2d95f5;
+                    margin: 2em;
+                }
+            }
+            
+        }
+
+}

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { useNavigate } from 'react-router-dom'
+import { useNavigate,Link } from 'react-router-dom'
 import { nanoid } from 'nanoid'
 
 const Register = ()=>{
@@ -39,18 +39,31 @@ const Register = ()=>{
         console.log(registrationSuccess)
     },[registrationSuccess])
     return (
-        <form>
-            <h1>Register</h1>
-            <label htmlFor="name">Name</label>
-            <input type="text" name="name" id="name" onChange={handleChange}/>
+        <form className="register__Form-Main">
+            <div className="register__Hero-Name">
+                <h1 className="register__Text">Journly</h1>
+                <p className="register__Description">Sign up to keep track on your goals and activities</p>
+            </div>
+            <div className="register__Grid-Main">
+                <div className="register__Input-Name">
+                    <label htmlFor="name" className="register__Text-Labels">Name</label>
+                    <input type="text" name="name" id="name" onChange={handleChange}/>
+                </div>
+                <div className="register__Input-Email">
+                    <label htmlFor="email" className="register__Text-Labels">Email</label>
+                    <input type="email" name="email" id="email" onChange={handleChange}/>
+                </div>
+                <div className="register__Input-Pass">
+                    <label htmlFor="password" className="register__Text-Labels">Password</label>
+                    <input type="password" name="password" id="password" onChange={handleChange}/>
+                </div>
 
-            <label htmlFor="email">Email</label>
-            <input type="email" name="email" id="email" onChange={handleChange}/>
-
-            <label htmlFor="password">Password</label>
-            <input type="password" name="password" id="password" onChange={handleChange}/>
-
-            <button type="button" onClick={()=>handleClick(regtrationInfo)}>Register</button>
+                <button type="button" className="register__Button" onClick={()=>handleClick(regtrationInfo)}>Register</button>
+                <div className="register__Footer">
+                    <p>Have an account?</p>
+                    <Link to='/'  className="register__Link">Sign in</Link>
+                </div>
+            </div>
         </form>
     )
 }
