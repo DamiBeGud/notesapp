@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const User = require('./User')
 const Register = require('./Register')
 const NewPost = require('./NewPost')
+const { text } = require('express')
 
 
 const app = express()
@@ -106,6 +107,51 @@ const articleDelete = async (req,res,next) =>{
     
     next()
 }
+
+
+//////////////////////////////////////////////////////////////
+            //   PROBABLY WONT NEED THIS CODE 
+/////////////////////////////////////////////////////////////
+
+// const editGet = async (req,res,next)=>{
+//     const articleId = req.params
+//     console.log(articleId)
+//     try {
+//         const editArticleGet = await NewPost.find({_id:articleId.articleId})
+//         console.log(editArticleGet)
+//         res.json(editArticleGet)
+
+//     } catch (error) {
+//         console.log(error.message)
+//     }
+//     next()
+// }
+// const editPost = async (req,res,next)=>{
+    //Unesi kod za updatovanje editovanog posta
+// }
+
+// app.get('/edit/:articleId',[editGet],(req,res,next)=>{})
+
+//////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////
+
+
+const editPost = async (req,res,next)=>{
+    const data = req.body
+
+    try {
+        
+        await NewPost.updateOne({_id:data._id}, {$set:{title:data.title, text:data.text}})
+        console.log(data._id)
+        res.json(true)
+    } catch (error) {
+        console.log(error.message)
+        res.json(false)
+    }
+    next()
+}
+
+app.post('/edit',[editPost],(req,res,next)=>{})
 
 app.post('/', [loginRun], (req,res, next)=>{})
 

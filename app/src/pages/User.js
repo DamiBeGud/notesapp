@@ -4,6 +4,8 @@ import {Link, useParams} from "react-router-dom"
 
 import NewPost from "../components/NewPost"
 import Name from "../components/Name"
+import Edit from "../components/Edit"
+import Settings from "../components/Settings"
 const User = ()=>{
     const {userId} = useParams()
 
@@ -12,12 +14,12 @@ const User = ()=>{
     const[userInfo, setUserInfo] = useState()
     const[reRender, setReRender] = useState(0)
 
-    function updateArticles (info){
-        setArticles(prevArticles => {
-            return[...prevArticles, info]
-        })
 
-    }
+    const[settings, setSettings] = useState(false)
+    const[edit, setEdit] = useState(false)
+    const[editOneArticle, setEditOneArticle] = useState([])
+
+
 
     function render(){
         setReRender(prevReRender => prevReRender + 1)
@@ -63,13 +65,15 @@ const User = ()=>{
         
     }
 
+
+    //Code za nove artikle ti je ovdje i poziva se kasnije dole u returnu
     const createArticles = articles.map((article, index) => {
         return(
             <article key={index}>
                 <div>
                     <div>{article.title}</div>
                     <div>Date</div>
-                    <button>Edit</button>
+                    <button type="button" onClick={toggleEdit} id={index}>Edit</button>
                     <button type="button" onClick={handleDelete} id={index}>Delete</button>
                 </div>
                 <div>
@@ -82,11 +86,25 @@ const User = ()=>{
     })
 
   
-   
+   //make it into one function that passes 2 variables(state and setState)
 
     function handleToggle(){
         setNewPostToggle(!newPostToggle)
     }
+    function toggleSettings(){
+        setSettings(!settings)
+    }
+    function toggleEdit(event){
+        if(edit === false){    
+            const articleIndex = Number(event.target.id)
+            setEditOneArticle(prevEditOneArticle => prevEditOneArticle = [...prevEditOneArticle, articles[articleIndex]])
+            setEdit(!edit)
+        }else{
+            setEdit(!edit)
+            setEditOneArticle([])
+        }
+    }
+
     return(
 
         //markup je vise manje zavrsen za gornji dio koji ostaje vise manje isti
@@ -102,6 +120,7 @@ const User = ()=>{
         //   1. Gornji dio gdje ce da bude slika ime i informacija 
         //   2. navbar 
         //   3. i eventualno articles componenta
+        
         <main>
             <section>
                 <div>
@@ -129,16 +148,27 @@ const User = ()=>{
             <Link>Notes</Link>
 
             <button onClick={handleToggle}>New Post</button>
-            <button>Settings</button>
+            <button onClick={toggleSettings}>Settings</button>
             </nav>
             {newPostToggle && <NewPost
                 handleToggle={handleToggle}
-                updateArticles={updateArticles}
+                updateArticles={render}
             />}
             <section>
                 {createArticles ? createArticles:<h1>Nothing</h1>}
             </section>
+        {settings &&
+        < Settings
+            toggleSettings={toggleSettings}
+        />}
+        {edit &&
+        <Edit
+            toggleEdit={toggleEdit}
+            editOneArticle={editOneArticle}
+            render={render}
+        />}
         </main>
+        
     )
 }
 

@@ -20,7 +20,7 @@ const NewPost = (props)=>{
 
 
     function handleClick(info){
-        props.updateArticles(info)
+        
         
 
         fetch(`/user/${userId}`,{
@@ -31,9 +31,10 @@ const NewPost = (props)=>{
         })
         .then(response => response.json())
         .then(data=> {
-            console.log(data)
-            
+            console.log(data)  
+            data === true ?props.updateArticles(): console.log(data)
         })
+        
 
     }
     return(
