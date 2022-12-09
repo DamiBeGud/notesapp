@@ -72,7 +72,7 @@ const User = ()=>{
             <article key={index}>
                 <div>
                     <div>{article.title}</div>
-                    <div>Date</div>
+                    <div>{article.date}</div>
                     <button type="button" onClick={toggleEdit} id={index}>Edit</button>
                     <button type="button" onClick={handleDelete} id={index}>Delete</button>
                 </div>
@@ -122,6 +122,7 @@ const User = ()=>{
         //   3. i eventualno articles componenta
         
         <main>
+            {/* Prva sekcija koda */}
             <section>
                 <div>
                     <div>
@@ -155,7 +156,7 @@ const User = ()=>{
                 updateArticles={render}
             />}
             <section>
-                {createArticles ? createArticles:<h1>Nothing</h1>}
+                {createArticles.length !== 0 ? createArticles:<h1>There are no articles</h1>}
             </section>
         {settings &&
         < Settings

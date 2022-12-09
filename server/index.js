@@ -66,7 +66,7 @@ const newPost = async (req, res, next) =>{
     const  userId  = req.params
     const data = req.body
     try {
-        const newPost = new NewPost({user: userId.userId,title:data.title, text:data.text})
+        const newPost = new NewPost({user: userId.userId,title:data.title, text:data.text, date:data.date})
         await newPost.save()
         res.json(true)
     } catch (error) {
