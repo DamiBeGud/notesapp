@@ -113,9 +113,6 @@ const User = ()=>{
         // ovo new post i settings cemo za ikone da mjenjamo kasnije 
         // e sada treba da odradis za ovo new post animaciju neku malu nista komplikovano al da lijepse izgleda :)
 
-
-
-
         // Napraviti componente za user page 
         //   1. Gornji dio gdje ce da bude slika ime i informacija 
         //   2. navbar 

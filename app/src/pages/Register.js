@@ -26,7 +26,7 @@ const Register = ()=>{
         const{name, email, password} = info
         if(name !== "" && email !== "" && password !== "")
         {
-            console.log('User added')
+            
             fetch('/register',{
                 method: 'POST',
                 mode:'cors',
