@@ -2,6 +2,12 @@
   font-family: "Pacifico";
   src: local("Pacifico-Regular"), url("../fonts/Pacifico-Regular.ttf") format("truetype");
 }
+/*---Main Fonts---*/
+/*---General Fons*/
+/*---Button Nav Fonts---*/
+/*---Heading Font---*/
+/*---Date Font---*/
+/*---Custom Fonts---*/
 * {
   padding: 0;
   margin: 0;
@@ -29,7 +35,8 @@
 }
 .form-Main .heroName .description {
   margin-bottom: 2em;
-  color: darkgray;
+  color: #a9a9a9;
+  font-family: "Arial, Helvetica, sans-serif";
 }
 .form-Main .grid {
   display: flex;
@@ -66,7 +73,7 @@
 .form-Main .grid .buttonLogin {
   height: 2.2em;
   background-color: #2d95f5;
-  color: white;
+  color: #fff;
   font-weight: bold;
   border: none;
   border-radius: 10px;
@@ -107,7 +114,7 @@
   height: 2.2em;
   width: 7em;
   background-color: #2d95f5;
-  color: white;
+  color: #fff;
   font-weight: bold;
   border: none;
   border-radius: 10px;
@@ -143,7 +150,7 @@
   padding-bottom: 2em;
   width: 15em;
   text-align: center;
-  color: darkgray;
+  color: #a9a9a9;
 }
 .register__Form-Main .register__Grid-Main {
   display: flex;
@@ -193,7 +200,7 @@
 .register__Form-Main .register__Grid-Main .register__Button {
   height: 2.2em;
   background-color: #2d95f5;
-  color: white;
+  color: #fff;
   font-weight: bold;
   border: none;
   border-radius: 10px;
@@ -344,7 +351,7 @@
   padding-top: 1em;
   border: 1px solid black;
   border-radius: 20px;
-  background-color: white;
+  background-color: #fff;
 }
 .edit__Form .edit__Inst {
   display: flex;
@@ -385,7 +392,7 @@
   border-radius: 10px;
   border: none;
   background-color: #2d95f5;
-  color: white;
+  color: #fff;
 }
 
 /*------------------------New post style--------------------------*/
@@ -425,6 +432,7 @@
   border: none;
   border-radius: 7px;
   background-color: #2d95f5;
+  color: #fff;
 }
 .newpost__form input {
   border: none;

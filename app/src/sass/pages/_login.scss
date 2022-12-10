@@ -12,7 +12,7 @@
     .form-Main{
         display: flex;
         align-items: center;
-        background-color: #fff;
+        background-color: u.$bgColor;
         flex-direction: column;
         height: 100vh;
         width: 100vw;
@@ -30,7 +30,8 @@
 
             .description{
                 margin-bottom: 2em;
-                color: darkgray;
+                color: u.$descColor;
+                font-family:u.$FontGeneral;
             }
         }
         .grid{
@@ -52,6 +53,7 @@
                 font-size: 1em;
                 padding: 0;
                 margin: 0;
+                
             }
             input{
                 height: 2em;
@@ -68,8 +70,8 @@
             }
             .buttonLogin{
                 height: 2.2em;
-                background-color:#2d95f5;
-                color: white;
+                background-color:u.$btnColor;
+                color: u.$btnTextColor;
                 font-weight: bold;
                 border: none;
                 border-radius: 10px;
@@ -102,8 +104,8 @@
                     @include FlexCenter;
                     height: 2.2em;
                     width: 7em;
-                    background-color:#2d95f5;
-                    color: white;
+                    background-color:u.$btnColor;
+                    color: u.$btnTextColor;
                     font-weight: bold;
                     border: none;
                     border-radius: 10px;

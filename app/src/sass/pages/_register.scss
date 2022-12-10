@@ -9,7 +9,7 @@
 .register__Form-Main{
         display: flex;
         align-items: center;
-        background-color: #fff;
+        background-color: u.$bgColor;
         flex-direction: column;
         height: 100vh;
         width: 100vw;
@@ -27,7 +27,7 @@
                 padding-bottom: 2em;
                 width: 15em;
                 text-align: center;
-                color: darkgray;
+                color: u.$descColor;
             }
         }
         .register__Grid-Main{
@@ -78,8 +78,8 @@
 
             .register__Button{
                 height: 2.2em;
-                background-color:#2d95f5;
-                color: white;
+                background-color: u.$btnColor;
+                color: u.$btnTextColor;
                 font-weight: bold;
                 border: none;
                 border-radius: 10px;
@@ -91,7 +91,7 @@
 
                 .register__Link{
                     text-decoration: none;
-                    color: #2d95f5;
+                    color: u.$btnColor;
                     margin: 2em;
                 }
             }

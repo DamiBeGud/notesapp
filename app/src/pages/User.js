@@ -6,6 +6,7 @@ import NewPost from "../components/NewPost"
 import Name from "../components/Name"
 import Edit from "../components/Edit"
 import Settings from "../components/Settings"
+import Calendar from "../components/Calendar"
 const User = ()=>{
     const {userId} = useParams()
 
@@ -13,11 +14,12 @@ const User = ()=>{
     const[articles, setArticles] = useState([])
     const[userInfo, setUserInfo] = useState()
     const[reRender, setReRender] = useState(0)
-
+    const[calendarActive, setCalendarActive] = useState(false)
 
     const[settings, setSettings] = useState(false)
     const[edit, setEdit] = useState(false)
     const[editOneArticle, setEditOneArticle] = useState([])
+
 
 
 
@@ -104,6 +106,12 @@ const User = ()=>{
             setEditOneArticle([])
         }
     }
+    function openCalendar(){
+        setCalendarActive(true)
+    }
+    function openNotes(){
+        setCalendarActive(false)
+    }
 
     return(
 
@@ -112,9 +120,6 @@ const User = ()=>{
         // nav ostavi ovako kako je markup moramo jos skontati boje i to kako ce da izgleda
         // ovo new post i settings cemo za ikone da mjenjamo kasnije 
         // e sada treba da odradis za ovo new post animaciju neku malu nista komplikovano al da lijepse izgleda :)
-
-
-
 
         // Napraviti componente za user page 
         //   1. Gornji dio gdje ce da bude slika ime i informacija 
@@ -150,8 +155,8 @@ const User = ()=>{
                 </div>
             </section>
             <nav className="user__Nav">
-            <Link className="user__Nav-btn">Calendar</Link>
-            <Link className="user__Nav-btn">Notes</Link>
+            <button type="button" onClick={openCalendar} className="user__Nav-btn">Calendar</button>
+            <button type="button" onClick={openNotes} className="user__Nav-btn">Notes</button>
 
             <button onClick={handleToggle} className="user__Nav-btn">New Post</button>
             <button onClick={toggleSettings} className="user__Nav-btn">Settings</button>
@@ -164,7 +169,11 @@ const User = ()=>{
                 updateArticles={render}
             />}
             <section>
-                {createArticles.length !== 0 ? createArticles:<h1>There are no articles</h1>}
+                {calendarActive === false ? 
+                createArticles.length !== 0 ? 
+                createArticles:
+                <h1>There are no articles</h1>:
+                 <Calendar />}
             </section>
         {settings &&
         < Settings

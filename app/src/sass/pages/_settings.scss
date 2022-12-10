@@ -1,4 +1,5 @@
 /*-----------------------Settings style-------------------------*/
+@use '../util' as u;
 @mixin FlexCenterSettings {
     display: flex;
     justify-content: center;

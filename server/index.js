@@ -34,7 +34,6 @@ const registerRun = async (req, res, next) =>{
             }
     }catch (e){
         console.log(e.message)
-        res.json(e.message)
     }
 
     next()
