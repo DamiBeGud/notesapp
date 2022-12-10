@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const User = require('./User')
 const Register = require('./Register')
 const NewPost = require('./NewPost')
+const AddEvent = require('./AddEvent')
 const { text } = require('express')
 
 
@@ -150,6 +151,15 @@ const editPost = async (req,res,next)=>{
     }
     next()
 }
+
+const addEvent = async(req,res,next) =>{
+    const data = req.body
+    console.log(data)
+    res.json(true)
+    next()
+}
+
+app.post('/addevent',[addEvent],(req,res,next)=>{})
 
 app.post('/edit',[editPost],(req,res,next)=>{})
 
