@@ -6,6 +6,7 @@ import NewPost from "../components/NewPost"
 import Name from "../components/Name"
 import Edit from "../components/Edit"
 import Settings from "../components/Settings"
+import Calendar from "../components/Calendar"
 const User = ()=>{
     const {userId} = useParams()
 
@@ -13,11 +14,12 @@ const User = ()=>{
     const[articles, setArticles] = useState([])
     const[userInfo, setUserInfo] = useState()
     const[reRender, setReRender] = useState(0)
-
+    const[calendarActive, setCalendarActive] = useState(false)
 
     const[settings, setSettings] = useState(false)
     const[edit, setEdit] = useState(false)
     const[editOneArticle, setEditOneArticle] = useState([])
+
 
 
 
@@ -104,6 +106,12 @@ const User = ()=>{
             setEditOneArticle([])
         }
     }
+    function openCalendar(){
+        setCalendarActive(true)
+    }
+    function openNotes(){
+        setCalendarActive(false)
+    }
 
     return(
 
@@ -142,8 +150,8 @@ const User = ()=>{
                 </div>
             </section>
             <nav>
-            <Link>Calendar</Link>
-            <Link>Notes</Link>
+            <button type="button" onClick={openCalendar}>Calendar</button>
+            <button type="button" onClick={openNotes}>Notes</button>
 
             <button onClick={handleToggle}>New Post</button>
             <button onClick={toggleSettings}>Settings</button>
@@ -153,7 +161,11 @@ const User = ()=>{
                 updateArticles={render}
             />}
             <section>
-                {createArticles.length !== 0 ? createArticles:<h1>There are no articles</h1>}
+                {calendarActive === false ? 
+                createArticles.length !== 0 ? 
+                createArticles:
+                <h1>There are no articles</h1>:
+                 <Calendar />}
             </section>
         {settings &&
         < Settings
