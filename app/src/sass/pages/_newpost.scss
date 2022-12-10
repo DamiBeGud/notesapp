@@ -1,0 +1,51 @@
+/*------------------------New post style--------------------------*/
+@mixin FlexCenterNewPost {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.newpost__form{
+    display: grid;
+
+    .newpost__info{
+        @include FlexCenterNewPost;
+        font-size: 0.8em;
+        margin-bottom: 1.5em
+    }
+    .newpost__title{
+       @include FlexCenterNewPost;
+       flex-direction: column;
+       
+    }
+    .newpost__content{
+        @include FlexCenterNewPost;
+       flex-direction: column;
+    }
+    .newpost__buttons{
+        @include FlexCenterNewPost;
+        margin-bottom: 1em;
+        .newpost__btn{
+            padding: 0.4em;
+            margin-right: 1em;
+            margin-left: 1em;
+            width: 7em;
+            border: none;
+            border-radius: 7px;
+            background-color: #2d95f5;
+        }
+    }
+    input{
+        border: none;
+        border-bottom: 1px solid black;
+        margin: 1em;
+        outline: none
+    }
+    textarea{
+        margin: 1em;
+        border: none;
+        outline: none;
+        border: 1px solid black;
+        border-radius: 10px;
+        padding: 1em;
+    }
+}

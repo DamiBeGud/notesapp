@@ -46,13 +46,22 @@ const NewPost = (props)=>{
 
     }
     return(
-        <form>
-            <label htmlFor="title">Title</label>
-            <input type="text" name="title" onChange={handleChange}/>
-            <label htmlFor="text">Text</label>
-            <input type="text" name="text" onChange={handleChange}/>
-            <button type="button" onClick={()=>handleClick(note)}>Add Note</button>
-            <button type="button" onClick={props.handleToggle}>Close</button>
+        <form className="newpost__form">
+            <div className="newpost__info">
+                <h1>Create New Post</h1>
+            </div>
+            <div className="newpost__title">
+                <label className="newpost__textlabels" htmlFor="title">Title</label>
+                <input type="text" name="title" onChange={handleChange}/>
+            </div>
+            <div className="newpost__content">
+                <label className="newpost__textlabels" htmlFor="text">Text</label>
+                <textarea cols="40" rows="10" type="text" name="text" onChange={handleChange}/>
+            </div>
+            <div className="newpost__buttons">
+                <button className="newpost__btn" type="button" onClick={()=>handleClick(note)}>Add Note</button>
+                <button className="newpost__btn" type="button" onClick={props.handleToggle}>Close</button>
+            </div>
         </form>
     )
 }

@@ -1,0 +1,112 @@
+/*--------------------------------User style------------------------------*/
+@mixin FlexCenterUser {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.user__Info{
+    display: flex;
+    flex-direction: row;
+    height: 8em;
+    margin-bottom: 2em;
+
+    .user__Username-placeholder{
+        background-color: gray;
+    }
+
+    .user__Username{
+        font-size: 1.7em;
+        margin: 0.2em;
+    }
+
+    .user__Image{
+        width: 50%;
+        @include FlexCenterUser;
+
+        .user__Img
+        {
+            background-color: black;
+            width: 4em;
+            height: 4em;
+            border-radius: 50%;
+
+        }
+
+    }
+    .user__Name{
+        @include FlexCenterUser;
+        flex-direction: column;
+        margin: 0.5em;
+        width: 65%;
+
+        .user__Desc{
+            overflow-wrap: break-word;
+        }
+        .user__Desc-age{
+            overflow-wrap: break-word;
+        }
+        .user__Desc-dob{
+            overflow-wrap: break-word;
+        }
+    }
+}
+
+.user__Nav{
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 1em;
+
+    .user__Nav-btn{
+        padding: 0.5em;
+        border: none;
+        text-decoration: none;
+        background-color: white;
+        color: black;
+    }
+
+}
+.user__hr{
+    @include FlexCenterUser;
+    margin-bottom: 1em;
+    .user__hr1{
+        @include FlexCenterUser;
+        width: 15em;
+        border-top: 1px solid black;
+    }
+}
+.user__Article-navbar{
+    @include FlexCenterUser;
+    background-color: bisque;
+    height: 2em;
+
+    .user__Article-date{
+        flex: 0.3;
+        @include FlexCenterUser;
+        font-weight: 700;
+        color: gray;
+        font-size: 0.9em;
+    }
+    .user__Article-title{
+        flex: 0.5;
+        @include FlexCenterUser;
+        font-weight: 700;
+        font-size: 1.3em;
+    }
+    .user__Article-btn{
+        flex: 0.1;
+        @include FlexCenterUser;
+        border: none;
+        background-color: bisque;
+        padding: 0.7em;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+}
+.user__Article-content{
+    background-color: gray;
+    min-height: 8em;
+    height: auto;
+    padding: 1em;
+    overflow-wrap: break-word;
+}

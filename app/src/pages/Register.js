@@ -69,8 +69,8 @@ const Register = ()=>{
                     <input type="password" name="password" id="password" onChange={handleChange}/>
                 </div>
              {/* Terms of Use */}
-                <div>
-                    <label htmlFor="termsOfUse" >I agree with <Link>Termes of use</Link></label> 
+                <div className="terms">
+                    <label className="register__terms" htmlFor="termsOfUse" >I agree with <Link>Terms of use</Link></label> 
                     <input type="checkbox" name="termsOfUse" id="termsOfUse" />
                 </div>
         {/* /**************************************** *****************************************/}

@@ -42,7 +42,7 @@ const Login = ()=>{
 
 
     return (
-
+        
         <form className='form-Main'>
             <div className='heroName'>
             <h1 className='appName'>Journly</h1>

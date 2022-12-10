@@ -70,15 +70,15 @@ const User = ()=>{
     const createArticles = articles.map((article, index) => {
         return(
             <article key={index}>
-                <div>
-                    <div>{article.title}</div>
-                    <div>{article.date}</div>
-                    <button type="button" onClick={toggleEdit} id={index}>Edit</button>
-                    <button type="button" onClick={handleDelete} id={index}>Delete</button>
+                <div className="user__Article-navbar">
+                    <div className="user__Article-date">{article.date}</div>
+                    <div className="user__Article-title">{article.title}</div>
+                    <button type="button" onClick={toggleEdit} id={index}  className="user__Article-btn">Edit</button>
+                    <button type="button" onClick={handleDelete} id={index}   className="user__Article-btn">Delete</button>
                 </div>
                 <div>
-                    <div>
-                        {article.text}
+                    <div className="user__Article-content">
+                        <p>{article.text}</p>
                     </div>
                 </div>
             </article>
@@ -124,33 +124,41 @@ const User = ()=>{
         <main>
             {/* Prva sekcija koda */}
             <section>
-                <div>
-                    <div>
-                        {/* Treba napraviti place holder za sliku 
-                            Dodaj clasu neku i stavi u stilu width i to i stavi background sivo ili crno da bude za sada
-                        */}
-                        <img  />
+                <div className="user__Info">
+                    <div className="user__Image">
+                        <div className="user__Img">
+
+                        </div>
                     </div>
-                    <div>
+                    <div className="user__Name">
                         {/* Waiting for name replace with colored div */}
                         {/* Wiating for name div je place holder za ime dok ga ne povuce iz baze podataka 
                         i displeya se samo dok ne povuce ime  */}
                         {userInfo === undefined? 
-                        <div>Waiting for name</div>
-                        :<h1>{userInfo[0].name}</h1>}
+                        <div className="user__Username-placeholder"></div>
+                        :<h1 className="user__Username">{userInfo[0].name}</h1>}
                         
                         {/* Napravi ovaj paragraf da bude kako bi trebalo da bude na kraju bez placeholdera to cu ja kasnije ubaciti */}
-                        <p>sdjahkdj sdhajkhdsa ajkshdjkash ashjkhdkjah</p>
+                        {userInfo === undefined? 
+                        <div className="user__Desc-placeholder"></div>
+                        :<div>
+                            <div className="user__Desc-main"><p className="user__Desc">albin dami albin dami albin</p></div>
+                            <div className="user__Desc-age-main"><p className="user__Desc-age">Age:</p></div>
+                            <div className="user__Desc-dob-main"><p className="user__Desc-dob">Date of Birth: </p></div>
+                        </div>}
                     </div>
                 </div>
             </section>
-            <nav>
-            <Link>Calendar</Link>
-            <Link>Notes</Link>
+            <nav className="user__Nav">
+            <Link className="user__Nav-btn">Calendar</Link>
+            <Link className="user__Nav-btn">Notes</Link>
 
-            <button onClick={handleToggle}>New Post</button>
-            <button onClick={toggleSettings}>Settings</button>
+            <button onClick={handleToggle} className="user__Nav-btn">New Post</button>
+            <button onClick={toggleSettings} className="user__Nav-btn">Settings</button>
             </nav>
+            <div className="user__hr">
+                <div className="user__hr1"></div>
+            </div>
             {newPostToggle && <NewPost
                 handleToggle={handleToggle}
                 updateArticles={render}

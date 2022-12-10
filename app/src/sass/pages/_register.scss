@@ -31,7 +31,8 @@
             }
         }
         .register__Grid-Main{
-            display: grid;
+            display: flex;
+            flex-direction: column;
             border: 2px solid black;
             border-radius: 15px;
             padding: 1.5em;
@@ -48,17 +49,25 @@
             }
 
             .register__Text-Labels{
-                font-size: 1.5rem;
-                padding-bottom: 1em;
+                font-size: 1em;
+                padding-bottom: 0.1em;
                 margin: 0;
                 font-weight: bold;
             }
+            .terms{
+                @include FlexCenterRegister;
+                flex-direction: column;
+
+                .register__terms{
+                    margin-bottom: 0.7em;
+                }
+            }
             input{
                 height: 1.8em;
-                width: 16em;
+                width: 12em;
                 border:none;
                 border-bottom: 1px solid black;
-                margin-bottom: 1.5em;
+                margin-bottom: 1em;
                 font-size: 1.1em;
             }
             input:focus{

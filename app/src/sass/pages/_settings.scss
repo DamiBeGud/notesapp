@@ -1,0 +1,53 @@
+/*-----------------------Settings style-------------------------*/
+@mixin FlexCenterSettings {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@keyframes settings{
+    from{transform: translateX(100%);}
+    to{transform: translateX(0%) }
+}
+@keyframes CloseSettings{
+    from{transform: translateX(0%);}
+    to{transform: translateX(100%) }
+}
+.settings__main{
+    animation-name: settings;
+    animation-duration: 1s;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+    background-color: #2d95f5;
+    z-index: 999;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    .settings__info{
+        text-align: center;
+        margin: 1em;
+    }
+    .settings__nav{
+
+        .settings__ul{
+            
+            flex-direction: column;
+            .settings__li{
+                padding: 0.5em;
+                list-style: none;
+            }
+        }
+    }
+    .settings__button{
+        @include FlexCenterSettings;
+        margin: 1em;
+        .settings__btn{
+            padding: 0.5em;
+            width: 5em;
+            border: none;
+            border-radius: 10px;
+        }
+    }
+}
