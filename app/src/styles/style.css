@@ -198,4 +198,9 @@
   text-decoration: none;
   color: #2d95f5;
   margin: 2em;
+}
+
+.testing {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
 }/*# sourceMappingURL=style.css.map */
