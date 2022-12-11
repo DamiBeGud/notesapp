@@ -1,13 +1,23 @@
+/*--Dark Colors---*/
+/*--Light Colors--*/
+/*--Accent Colors--*/
+/*--Dark Colors opet--*/
+/*--Light Colors opet--*/
+/*--Accent Colors opet--*/
+/*--Dark Theme--*/
+/*--Light Theme--*/
+/*Button Colors*/
 @font-face {
   font-family: "Pacifico";
   src: local("Pacifico-Regular"), url("../fonts/Pacifico-Regular.ttf") format("truetype");
 }
 /*---Main Fonts---*/
+/*---Custom Fonts---*/
 /*---General Fons*/
 /*---Button Nav Fonts---*/
 /*---Heading Font---*/
 /*---Date Font---*/
-/*---Custom Fonts---*/
+/*--Color Utill Classes--*/
 * {
   padding: 0;
   margin: 0;
@@ -214,11 +224,6 @@
   text-decoration: none;
   color: #2d95f5;
   margin: 2em;
-}
-
-.testing {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
 }
 
 /*--------------------------------User style------------------------------*/
@@ -525,4 +530,9 @@
   width: 5em;
   border: none;
   border-radius: 10px;
+}
+
+.testing {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
 }

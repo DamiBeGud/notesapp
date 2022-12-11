@@ -2,3 +2,61 @@ $bgColor:#fff;
 $btnColor:#2d95f5;
 $btnTextColor:#fff;
 $descColor:#a9a9a9;
+
+/*--Dark Colors---*/
+$Color100:#2E3440;
+$Color200:#3B4252;
+$Color300:#434C5E;
+$Color400:#4C566A;
+
+/*--Light Colors--*/
+$Color500:#D8DEE9;
+$Color600:#E5E9F0;
+$Color700:#ECEFF4;
+
+/*--Accent Colors--*/
+$Color800:#8FBCBB;
+$Color900:#88C0D0;
+$Color1000:#81A1C1;
+$Color1100:#5E81AC;
+
+/*--Dark Colors opet--*/
+$DarkColor100:$Color100;
+$DarkColor200:$Color200;
+$DarkColor300:$Color300;
+$DarkColor400:$Color400;
+
+/*--Light Colors opet--*/
+$LightColor100:$Color500;
+$LightColor200:$Color600;
+$LightColor300:$Color700;
+
+/*--Accent Colors opet--*/
+$AccentColor100:$Color800;
+$AccentColor200:$Color900;
+$AccentColor300:$Color1000;
+$AccentColor400:$Color1100;
+
+/*--Dark Theme--*/
+$bgColor100dt:$DarkColor100;
+$bgColor200dt:$DarkColor200;
+$bgColor300dt:$DarkColor300;
+$bgColor400dt:$DarkColor400;
+$FontColor100dt:$LightColor100;
+$FontColor200dt:$LightColor200;
+$FontColor300dt:$LightColor300;
+
+/*--Light Theme--*/
+$bgColor100lt:$LightColor100;
+$bgColor200lt:$LightColor100;
+$bgColor300lt:$LightColor100;
+$FontColor100lt:$DarkColor100;
+$FontColor200lt:$DarkColor200;
+$FontColor300lt:$DarkColor300;
+$FontColor400lt:$DarkColor400;
+
+/*Button Colors*/
+$btnColor100:$AccentColor100;
+$btnColor200:$AccentColor200;
+$btnColor300:$AccentColor300;
+$btnColor400:$AccentColor400;
