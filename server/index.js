@@ -1,11 +1,11 @@
 const express = require('express')
-const { stringify } = require('querystring')
 const mongoose = require('mongoose')
+
 const User = require('./User')
 const Register = require('./Register')
 const NewPost = require('./NewPost')
 const AddEvent = require('./AddEvent')
-const { text } = require('express')
+
 
 
 const app = express()
@@ -109,34 +109,6 @@ const articleDelete = async (req,res,next) =>{
     next()
 }
 
-
-//////////////////////////////////////////////////////////////
-            //   PROBABLY WONT NEED THIS CODE 
-/////////////////////////////////////////////////////////////
-
-// const editGet = async (req,res,next)=>{
-//     const articleId = req.params
-//     console.log(articleId)
-//     try {
-//         const editArticleGet = await NewPost.find({_id:articleId.articleId})
-//         console.log(editArticleGet)
-//         res.json(editArticleGet)
-
-//     } catch (error) {
-//         console.log(error.message)
-//     }
-//     next()
-// }
-// const editPost = async (req,res,next)=>{
-    //Unesi kod za updatovanje editovanog posta
-// }
-
-// app.get('/edit/:articleId',[editGet],(req,res,next)=>{})
-
-//////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////
-
-
 const editPost = async (req,res,next)=>{
     const data = req.body
 
@@ -154,8 +126,23 @@ const editPost = async (req,res,next)=>{
 
 const addEvent = async(req,res,next) =>{
     const data = req.body
-    console.log(data)
-    res.json(true)
+    try {
+        const addNewEvent = new AddEvent(
+            {
+                title:data.title,
+                 time:data.time,
+                  description:data.description,
+                  date:data.date,
+                  user:data.user
+                }
+            )
+        await addNewEvent.save()
+        console.log(data)
+        res.json(true)
+        
+    } catch (error) {
+        console.log(error.message)
+    }
     next()
 }
 

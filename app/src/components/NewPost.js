@@ -3,7 +3,8 @@ import { useParams } from 'react-router-dom'
 
 const NewPost = (props)=>{
     const { userId } = useParams();
-    
+    const postPopUp = props.postPopUp
+    const setPostPopUp = props.setPostPopUp
     const info = {
         title:"",
         text:"",
@@ -41,6 +42,8 @@ const NewPost = (props)=>{
         .then(data=> {
             console.log(data)  
             data === true ?props.updateArticles(): console.log(data)
+            setPostPopUp(!postPopUp)
+            props.handleToggle()
         })
         
 

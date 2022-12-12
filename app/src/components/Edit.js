@@ -5,8 +5,6 @@ const Edit = (props)=>{
 
     const[oneArticle, setOneArticle] = useState(props.editOneArticle[0])
     function handleEdit(event){
-        console.log(event.target.id)
-        console.log(oneArticle)
         const articleId = event.target.id
         fetch(`/edit`,{
             method:"POST",

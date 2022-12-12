@@ -1,13 +1,16 @@
-import { useState, useEffect } from "react"
-
+import { useState, useEffect} from "react"
+import { useParams } from 'react-router-dom'
 
 const AddEvent = (props)=>{
+    const { userId } = useParams();
 
     const info = {
         title:"",
         time:"",
         description:"",
-        id: props.date
+        date: props.date,
+        user: userId
+
     }
 
 

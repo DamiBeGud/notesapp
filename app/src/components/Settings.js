@@ -1,4 +1,4 @@
-
+import Profile from "./settings-components/Profile"
 
 const Settings = (props)=>{
 
@@ -9,7 +9,7 @@ const Settings = (props)=>{
             <h1 className="settings__info">This is Settings</h1>
             <nav className="settings__nav">
                 <ul className="settings__ul">
-                    <li className="settings__li">Profile</li>
+                    <li className="settings__li"><button type="button"></button></li>
                     <li className="settings__li">Security</li>
                     <li className="settings__li">Privacy</li>
                     <li className="settings__li">Payment settings</li>
@@ -18,6 +18,8 @@ const Settings = (props)=>{
             <div className="settings__button">
                 <button className="settings__btn bg-btn-400" onClick={props.toggleSettings}>Close</button>
             </div>
+
+            <Profile />
         </div>
     )
 }

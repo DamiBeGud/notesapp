@@ -11,15 +11,11 @@ const[date, setDate] = useState("")
 
 
 function calendar(event){
-    
-    
     const days = event.target.value
     const month = event.target.id
  
     calendarDays.length > 0 ? setCalndarDays([]) : setCalndarDays([])
 
-    
-  
     for(let i=1; i <= days; i++){
         let d= new Date(`${month} ${i}, 2022 01:15:00`)
         let db = `${month} ${i}, 2022`
@@ -66,10 +62,9 @@ function toggleAddEvent(event){
 
 const createCalendar = calendarDays?.map((day, index)=>{
 
-    // console.log(day.date)
     return(
         <div key={day.id}>
-            {/* <div>{day.day}</div> */}
+
             <div>{day.date}</div>
             {day.date !==""?
             <div>
