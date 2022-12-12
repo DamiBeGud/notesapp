@@ -1,12 +1,3 @@
-/*--Dark Colors---*/
-/*--Light Colors--*/
-/*--Accent Colors--*/
-/*--Dark Colors opet--*/
-/*--Light Colors opet--*/
-/*--Accent Colors opet--*/
-/*--Dark Theme--*/
-/*--Light Theme--*/
-/*Button Colors*/
 @font-face {
   font-family: "Pacifico";
   src: local("Pacifico-Regular"), url("../fonts/Pacifico-Regular.ttf") format("truetype");
@@ -17,11 +8,94 @@
 /*---Button Nav Fonts---*/
 /*---Heading Font---*/
 /*---Date Font---*/
-/*--Color Utill Classes--*/
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
+.bg-100dt {
+  background: #2E3440 !important;
+}
+
+.bg-200dt {
+  background: #3B4252 !important;
+}
+
+.bg-300dt {
+  background: #434C5E !important;
+}
+
+.bg-400dt {
+  background: #4C566A !important;
+}
+
+.bg-100 {
+  background: #D8DEE9 !important;
+}
+
+.bg-200 {
+  background: #E5E9F0 !important;
+}
+
+.bg-300 {
+  background: #ECEFF4 !important;
+}
+
+.bg-btn-100 {
+  background: #8FBCBB !important;
+}
+
+.bg-btn-200 {
+  background: #88C0D0 !important;
+}
+
+.bg-btn-300 {
+  background: #81A1C1 !important;
+}
+
+.bg-btn-400 {
+  background: #5E81AC !important;
+}
+
+.clr-100 {
+  color: #2E3440 !important;
+}
+
+.clr-200 {
+  color: #3B4252 !important;
+}
+
+.clr-300 {
+  color: #434C5E !important;
+}
+
+.clr-400 {
+  color: #4C566A !important;
+}
+
+.clr-100dt {
+  color: #D8DEE9 !important;
+}
+
+.clr-200dt {
+  color: #E5E9F0 !important;
+}
+
+.clr-300dt {
+  color: #ECEFF4 !important;
+}
+
+.font-heading {
+  font-family: "Oswald", sans-serif !important;
+}
+
+.font-nav {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+}
+
+.font-nav:hover {
+  cursor: pointer;
+}
+
+/*Dodana klasa za kasnije za JS*/
+.font-nav-focus {
+  color: white;
 }
 
 .form-Main {
@@ -131,11 +205,6 @@
   text-decoration: none;
 }
 
-@media (min-width: 43.75em) {
-  .form-Main {
-    background-color: aqua;
-  }
-}
 /*---------------------------Register Page------------------------*/
 .register__Form-Main {
   display: flex;
@@ -303,6 +372,7 @@
   align-items: center;
   background-color: bisque;
   height: 2em;
+  align-items: flex-end;
 }
 .user__Article-navbar .user__Article-date {
   flex: 0.3;
@@ -321,7 +391,13 @@
   font-weight: 700;
   font-size: 1.3em;
 }
-.user__Article-navbar .user__Article-btn {
+.user__Article-navbar .user__Article-btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+}
+.user__Article-navbar .user__Article-btns .user__Article-btn {
   flex: 0.1;
   display: flex;
   justify-content: center;
@@ -343,7 +419,6 @@
 
 /*--------------------Edit form------------------*/
 .edit__main {
-  background-color: rgba(0, 0, 0, 0.7);
   position: fixed;
   width: 100vw;
   height: 100vh;
@@ -405,6 +480,17 @@
   color: #fff;
 }
 
+@media only screen and (max-width: 50em) and (-webkit-min-device-pixel-ratio: 2) {
+  .edit__main {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 12%;
+    padding-top: 2em;
+    padding-bottom: 2em;
+    z-index: 99;
+  }
+}
 /*------------------------New post style--------------------------*/
 .newpost__form {
   display: grid;
@@ -492,11 +578,21 @@
     transform: translateX(100%);
   }
 }
-.settings__main {
+.settings-false {
+  -webkit-animation-name: CloseSettings;
+          animation-name: CloseSettings;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+}
+
+.settings-true {
   -webkit-animation-name: settings;
           animation-name: settings;
   -webkit-animation-duration: 1s;
           animation-duration: 1s;
+}
+
+.settings__main {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -532,7 +628,22 @@
   border-radius: 10px;
 }
 
+* {
+  font-family: "Roboto", sans-serif;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+button {
+  color: white;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
 .testing {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-}
+}/*# sourceMappingURL=style.css.map */

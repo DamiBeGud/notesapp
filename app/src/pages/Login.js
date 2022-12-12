@@ -59,7 +59,7 @@ const Login = ()=>{
             </div>
         <button type="button" className='buttonLogin' onClick={()=>handleClick(loginInfo)}>Login</button>
             <div className='centerOr'>
-                <div className='or'>Or</div>
+                <div className='or .bgClrDT-100'>Or</div>
             </div>
             
         <div className='btn'>        

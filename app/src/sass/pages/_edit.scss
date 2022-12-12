@@ -6,7 +6,7 @@
     align-items: center;
 }
 .edit__main{
-    background-color: rgba($color: #000000, $alpha: 0.7);
+    
     position: fixed;
     width: 100vw;
     height: 100vh;
@@ -66,4 +66,18 @@
             color: u.$btnTextColor;
         }
     }   
+}
+
+@media only screen and (max-width: 50em) and (-webkit-min-device-pixel-ratio: 2) {
+    .edit__main{
+        
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        top: 12%;
+        padding-top: 2em;
+        padding-bottom: 2em;
+        z-index: 99;
+        
+    }
 }

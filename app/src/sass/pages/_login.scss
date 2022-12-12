@@ -1,14 +1,11 @@
 @use '../util' as u;
+
 @mixin FlexCenter {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-    *{
-        padding: 0;
-        margin: 0;
-        box-sizing: border-box;
-    }
+
     .form-Main{
         display: flex;
         align-items: center;
@@ -117,7 +114,7 @@
 @include u.breakpoint (medium)
 {
     .form-Main{
-        background-color: aqua;
+       
     }
 }
    

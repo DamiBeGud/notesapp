@@ -13,9 +13,16 @@
     from{transform: translateX(0%);}
     to{transform: translateX(100%) }
 }
-.settings__main{
+.settings-false{
+    animation-name: CloseSettings;
+    animation-duration: 1s;
+}
+.settings-true{
     animation-name: settings;
     animation-duration: 1s;
+}
+.settings__main{
+
     display: flex;
     justify-content: center;
     flex-direction: column;

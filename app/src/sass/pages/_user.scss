@@ -78,6 +78,7 @@
     @include FlexCenterUser;
     background-color: bisque;
     height: 2em;
+    align-items: flex-end;
 
     .user__Article-date{
         flex: 0.3;
@@ -92,14 +93,18 @@
         font-weight: 700;
         font-size: 1.3em;
     }
-    .user__Article-btn{
-        flex: 0.1;
+    .user__Article-btns{
         @include FlexCenterUser;
-        border: none;
-        background-color: bisque;
-        padding: 0.7em;
-        padding-top: 0;
-        padding-bottom: 0;
+        gap:.5em;
+        .user__Article-btn{
+            flex: 0.1;
+            @include FlexCenterUser;
+            border: none;
+            background-color: bisque;
+            padding: 0.7em;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
     }
 
 }

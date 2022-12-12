@@ -1,8 +1,11 @@
 
 
 const Settings = (props)=>{
+
+    let className = new Boolean(props.settings)
+    
     return(
-        <div className="settings__main">
+        <div className={`settings__main bg-100 settings-${className.toString()}`}>
             <h1 className="settings__info">This is Settings</h1>
             <nav className="settings__nav">
                 <ul className="settings__ul">
@@ -13,7 +16,7 @@ const Settings = (props)=>{
                 </ul>
             </nav>
             <div className="settings__button">
-                <button className="settings__btn" onClick={props.toggleSettings}>Close</button>
+                <button className="settings__btn bg-btn-400" onClick={props.toggleSettings}>Close</button>
             </div>
         </div>
     )

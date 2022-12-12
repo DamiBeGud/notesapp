@@ -7,6 +7,7 @@ import Name from "../components/Name"
 import Edit from "../components/Edit"
 import Settings from "../components/Settings"
 import Calendar from "../components/Calendar"
+import PostAdded from "../components/popups/PostAdded"
 const User = ()=>{
     const {userId} = useParams()
 
@@ -19,8 +20,11 @@ const User = ()=>{
     const[settings, setSettings] = useState(false)
     const[edit, setEdit] = useState(false)
     const[editOneArticle, setEditOneArticle] = useState([])
+    
+    
+    const[postPopUp, setPostPopUp] = useState(false)
 
-
+    const[settingsAnimation, setSettingsAnimation] = useState(false)
 
 
     function render(){
@@ -71,21 +75,28 @@ const User = ()=>{
     //Code za nove artikle ti je ovdje i poziva se kasnije dole u returnu
     const createArticles = articles.map((article, index) => {
         return(
-            <article key={index}>
-                <div className="user__Article-navbar">
-                    <div className="user__Article-date">{article.date}</div>
-                    <div className="user__Article-title">{article.title}</div>
-                    <button type="button" onClick={toggleEdit} id={index}  className="user__Article-btn">Edit</button>
-                    <button type="button" onClick={handleDelete} id={index}   className="user__Article-btn">Delete</button>
+            <article key={index} className="bg-200">
+                <div className="user__Article-navbar bg-100">
+                    <div className="user__Article-date clr-400">{article.date}</div>
+                    <div className="user__Article-title clr-100 font-heading">{article.title}</div>
+                    <div className="user__Article-btns">
+                    <button type="button" onClick={toggleEdit} id={index}  className="user__Article-btn bg-btn-400">Edit</button>
+                    <button type="button" onClick={handleDelete} id={index}   className="user__Article-btn bg-btn-400">Delete</button>
+                    </div>
                 </div>
                 <div>
-                    <div className="user__Article-content">
-                        <p>{article.text}</p>
+                    <div className="user__Article-content bg-300">
+                        <p className="clr-300">{article.text}</p>
                     </div>
                 </div>
             </article>
         )
     })
+
+    const anim = {
+        animationName: "CloseSettings",
+        animationDuration: 1 + "s"
+    }
 
   
    //make it into one function that passes 2 variables(state and setState)
@@ -94,7 +105,9 @@ const User = ()=>{
         setNewPostToggle(!newPostToggle)
     }
     function toggleSettings(){
-        setSettings(!settings)
+        setSettingsAnimation(!settingsAnimation)
+        settings ? setTimeout(()=>setSettings(!settings),1000) : setSettings(!settings)
+        
     }
     function toggleEdit(event){
         if(edit === false){    
@@ -126,7 +139,7 @@ const User = ()=>{
         //   2. navbar 
         //   3. i eventualno articles componenta
         
-        <main>
+        <main className="bg-300">
             {/* Prva sekcija koda */}
             <section>
                 <div className="user__Info">
@@ -141,25 +154,25 @@ const User = ()=>{
                         i displeya se samo dok ne povuce ime  */}
                         {userInfo === undefined? 
                         <div className="user__Username-placeholder"></div>
-                        :<h1 className="user__Username">{userInfo[0].name}</h1>}
+                        :<h1 className="user__Username font-heading clr-100">{userInfo[0].name}</h1>}
                         
                         {/* Napravi ovaj paragraf da bude kako bi trebalo da bude na kraju bez placeholdera to cu ja kasnije ubaciti */}
                         {userInfo === undefined? 
                         <div className="user__Desc-placeholder"></div>
                         :<div>
-                            <div className="user__Desc-main"><p className="user__Desc">albin dami albin dami albin</p></div>
-                            <div className="user__Desc-age-main"><p className="user__Desc-age">Age:</p></div>
-                            <div className="user__Desc-dob-main"><p className="user__Desc-dob">Date of Birth: </p></div>
+                            <div className="user__Desc-main"><p className="user__Desc clr-200">albin dami albin dami albin</p></div>
+                            <div className="user__Desc-age-main"><p className="user__Desc-age clr-200">Age:</p></div>
+                            <div className="user__Desc-dob-main"><p className="user__Desc-dob clr-200">Date of Birth: </p></div>
                         </div>}
                     </div>
                 </div>
             </section>
-            <nav className="user__Nav">
-            <button type="button" onClick={openCalendar} className="user__Nav-btn">Calendar</button>
-            <button type="button" onClick={openNotes} className="user__Nav-btn">Notes</button>
+            <nav className="user__Nav bg-200">
+            <button type="button" onClick={openCalendar} className="user__Nav-btn bg-200 font-nav">Calendar</button>
+            <button type="button" onClick={openNotes} className="user__Nav-btn bg-200 font-nav">Notes</button>
 
-            <button onClick={handleToggle} className="user__Nav-btn">New Post</button>
-            <button onClick={toggleSettings} className="user__Nav-btn">Settings</button>
+            <button onClick={handleToggle} className="user__Nav-btn bg-200 font-nav">New Post</button>
+            <button onClick={toggleSettings} className="user__Nav-btn bg-200 font-nav">Settings</button>
             </nav>
             <div className="user__hr">
                 <div className="user__hr1"></div>
@@ -178,6 +191,7 @@ const User = ()=>{
         {settings &&
         < Settings
             toggleSettings={toggleSettings}
+            settings={settingsAnimation}
         />}
         {edit &&
         <Edit

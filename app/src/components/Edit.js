@@ -29,18 +29,18 @@ const Edit = (props)=>{
         
     }
     return(
-        <div className="edit__main">
-            <form className="edit__Form">
+        <div className="edit__main ">
+            <form className="edit__Form bg-100">
             <div className="edit__Inst">
                 <h1>Edit ur Post</h1>
             </div>
             <div className="edit__title">
                 <label className='edit__textLabels'>Edit Title</label>
-                <input type="text" name="title" value={oneArticle.title} onChange={handleChange}/>
+                <input type="text" name="title" value={oneArticle.title} onChange={handleChange} className="bg-300"/>
             </div>
             <div className="edit__content">
                 <label className='edit__textLabels'>Edit Content</label>
-                <textarea rows="12" cols="40" name="text" value={oneArticle.text} onChange={handleChange}/>
+                <textarea rows="12" cols="40" name="text" value={oneArticle.text} onChange={handleChange} className="bg-300"/>
             </div>
             <div className="edit__Buttons">
                 <button className="edit__btn" type="button" id={oneArticle._id} onClick={handleEdit}>Edit</button>
