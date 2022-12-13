@@ -28,6 +28,7 @@ const User = ()=>{
     
     /*      PopUp states     */
     const[postPopUp, setPostPopUp] = useState(false)
+  
     /*    Animation states  */
     const[settingsAnimation, setSettingsAnimation] = useState(false)
 

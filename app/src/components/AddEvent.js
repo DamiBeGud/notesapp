@@ -4,6 +4,10 @@ import { useParams } from 'react-router-dom'
 const AddEvent = (props)=>{
     const { userId } = useParams();
 
+    const eventPopUp = props.eventPopUp
+    const setEventPopUp = props.setEventPopUp
+    const render = props.render
+
     const info = {
         title:"",
         time:"",
@@ -38,7 +42,11 @@ const AddEvent = (props)=>{
             body: JSON.stringify(addEvent)
         })
         .then(res=>res.json())
-        .then(data=>console.log(data))
+        .then(data=>{
+            console.log(data)
+            setEventPopUp(!eventPopUp)
+            render()
+        })
     }
     return(
         <div>

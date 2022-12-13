@@ -146,6 +146,18 @@ const addEvent = async(req,res,next) =>{
     next()
 }
 
+const getEvents = async(req,res,next)=>{
+    const {userId} = req.params
+    try {
+        const findEvents = await AddEvent.find({user:userId})
+        res.json(findEvents)
+    } catch (error) {
+        console.log(error.message)
+    }
+    next()
+}
+app.get('/events/:userId',[getEvents], (req,res,next)=>{})
+
 app.post('/addevent',[addEvent],(req,res,next)=>{})
 
 app.post('/edit',[editPost],(req,res,next)=>{})

@@ -1,14 +1,47 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import {useParams} from "react-router-dom"
 
-
+import EventAdded from "./popups/EventAdded"
 import AddEvent from "./AddEvent"
 
-const Calendar = ()=>{
+const Calendar = (props)=>{
+
+const {userId} = useParams()
 
 const[calendarDays, setCalndarDays] = useState([])
 const[addEventState, setAddEventState] = useState(false)
 const[date, setDate] = useState("")
 
+const[calendarData, setCalendarData] = useState()
+const[reRender, setReRender] = useState(0)
+
+const[eventPopUp, setEventPopUp] = useState(false)
+
+useEffect(()=>{
+
+    fetch(`/events/${userId}`)
+    .then(res=>res.json())
+    .then(data=>{
+        // console.log(data)
+        setCalendarData(data)
+        reRender.length > 2 ? updateCalendar(data) : console.log("")
+    })
+
+},[reRender])
+
+    /* Updates state when some data is added, edited or deleted so it can be rerenderd to page */
+    function render(){
+        setReRender(prevReRender => prevReRender + 1)
+    }
+
+function updateCalendar(data){
+    setCalndarDays(prev=>{
+        prev.map(day=>{
+            const filteredData = data.filter(dataDay=> dataDay.date === day.date)
+            return{...day, [day.data] : filteredData}
+        })
+    })
+}
 
 function calendar(event){
     const days = event.target.value
@@ -21,8 +54,9 @@ function calendar(event){
         let db = `${month} ${i}, 2022`
         let getDaya = d.getDay()
 
-        //checl if getDay is 0
+        //check if getDay is 0
         // if not add add empty divs until is 0
+        // bacicaly it adds empty divs 
         if(i === 1)
        { if(getDaya === 0){
             console.log('first day is Sunday')
@@ -34,13 +68,19 @@ function calendar(event){
             }
         }}
 
-        let date = {id:i,day:getDaya, date:db}
+        const findData = calendarData.filter(data=>{return data.date === db})
+        let date = {
+                id:i,
+                day:getDaya,
+                date:db,
+                data:findData
+            }
         setCalndarDays(prevCalendarDays=>{
             return[...prevCalendarDays, date]
         })
     }
     console.log(calendarDays)
-    
+        
 }
 
 
@@ -69,9 +109,19 @@ const createCalendar = calendarDays?.map((day, index)=>{
             {day.date !==""?
             <div>
                 {/* Kad napravim da pulla evente iz DB napraviti logiku da prikazuje odnosno ne prikazuje */}
-            <div>No Events</div>
+            <div>
+
+                {
+                    day.data.map(data=>{
+                        return(
+                            <p key="data.id">{data.title}</p>
+                        )
+                    })
+                }
+
+            </div>
             <button type="button" id={index} onClick={toggleAddEvent}>Add Event</button>
-            <button type="button">See More</button>
+            
             </div>
             :<div></div>}
 
@@ -115,6 +165,14 @@ const createCalendar = calendarDays?.map((day, index)=>{
              <AddEvent 
                 toggleAddEvent={toggleAddEvent}
                 date={date.date}
+                eventPopUp={eventPopUp}
+                setEventPopUp={setEventPopUp}
+                render={render}
+             />}
+             {eventPopUp && 
+             <EventAdded 
+             eventPopUp={eventPopUp}
+             setEventPopUp={setEventPopUp}
              />}
         </div>
     )
