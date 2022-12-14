@@ -156,6 +156,44 @@ const getEvents = async(req,res,next)=>{
     }
     next()
 }
+
+const deleteEvent = async(req,res,next)=>{
+    const {eventId} = req.params
+    try {
+        await AddEvent.deleteOne({_id: eventId})
+        res.json(true)
+        
+    } catch (error) {
+        console.log(error.message)
+        res.json(error.message)
+    }
+    next()
+}
+const updateEvent = async(req,res,next) =>{
+    const {eventId} = req.params
+    const data = req.body
+    try {
+        await AddEvent.updateOne({_id: eventId},
+            {$set:
+                {
+                    title:data.title,
+                     time:data.time,
+                      description:data.description
+                    }})
+                    
+        res.json(true)
+        
+    } catch (error) {
+        console.log(error.message)
+        res.json(error.message)
+    }
+    next()
+}
+
+app.post('/updateevent/:eventId',[updateEvent],(req,res,next)=>{})
+
+app.post('/deleteevent/:eventId',[deleteEvent],(req,res,next)=>{})
+
 app.get('/events/:userId',[getEvents], (req,res,next)=>{})
 
 app.post('/addevent',[addEvent],(req,res,next)=>{})

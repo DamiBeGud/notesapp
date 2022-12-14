@@ -2,6 +2,7 @@ import { useState } from "react"
 import Profile from "./settings-components/Profile"
 import Security from "./settings-components/Security"
 import Custom from './settings-components/Custom'
+import Language from './settings-components/Language'
 
 const Settings = (props)=>{
 
@@ -11,6 +12,7 @@ const Settings = (props)=>{
         profile:false,
         security:false,
         custom:false,
+        language:false,
     }
 
     const[navStates, setNavStates] = useState(nav)
@@ -35,6 +37,7 @@ const Settings = (props)=>{
                     <li className="settings__li"><button type="button" id="profile" onClick={handleClick}>Profile</button></li>
                     <li className="settings__li"><button type="button" id="security" onClick={handleClick}>Security</button></li>
                     <li className="settings__li"><button type="button" id="custom" onClick={handleClick}>Customization</button></li>
+                    <li className="settings__li"><button type="button" id="language" onClick={handleClick}>Language</button></li>
                     <li className="settings__li">Privacy</li>
                     <li className="settings__li">Payment settings</li>
                 </ul>
@@ -47,6 +50,8 @@ const Settings = (props)=>{
             {navStates.profile && <Profile />}
             {navStates.security &&  <Security />}
             {navStates.custom &&  <Custom />}
+            {navStates.language &&  <Language />}
+
         </div>
         </div>
     

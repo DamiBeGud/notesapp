@@ -3,19 +3,27 @@ import {useParams} from "react-router-dom"
 
 import EventAdded from "./popups/EventAdded"
 import AddEvent from "./AddEvent"
+import SingleEvent from "./SingleEvent"
 
 const Calendar = (props)=>{
 
 const {userId} = useParams()
 
 const[calendarDays, setCalndarDays] = useState([])
-const[addEventState, setAddEventState] = useState(false)
+const[singleEventData, setSingleEventData] = useState()
 const[date, setDate] = useState("")
 
 const[calendarData, setCalendarData] = useState()
 const[reRender, setReRender] = useState(0)
 
+const[daysState, setDaysState] = useState()
+const[monthState, setMonthState] = useState()
+
 const[eventPopUp, setEventPopUp] = useState(false)
+
+const[addEventState, setAddEventState] = useState(false)
+const[singleEvent, setSingleEvent] = useState(false)
+
 
 useEffect(()=>{
 
@@ -23,31 +31,38 @@ useEffect(()=>{
     .then(res=>res.json())
     .then(data=>{
         // console.log(data)
-        setCalendarData(data)
-        reRender.length > 2 ? updateCalendar(data) : console.log("")
+        setCalendarData(prev=> prev = data)
+        updateCalendar(data)
     })
-
 },[reRender])
 
-    /* Updates state when some data is added, edited or deleted so it can be rerenderd to page */
-    function render(){
-        setReRender(prevReRender => prevReRender + 1)
-    }
 
-function updateCalendar(data){
-    setCalndarDays(prev=>{
-        prev.map(day=>{
-            const filteredData = data.filter(dataDay=> dataDay.date === day.date)
-            return{...day, [day.data] : filteredData}
-        })
-    })
+
+/* Updates state when some data is added, edited or deleted so it can be rerenderd to page */
+function render(){
+    setReRender(prevReRender => prevReRender + 1)
 }
+function updateCalendar(data){
+    for(let i = 0; i <= daysState + 1; i++){
+        let date = calendarDays[i].date
+        const updatedEvents = data.filter(data=>{return data.date === date})
+        updatedEvents === [] ? console.log('') : calendarDays[i].data = updatedEvents
+    }
+}
+
+
+
+
 
 function calendar(event){
     const days = event.target.value
     const month = event.target.id
  
-    calendarDays.length > 0 ? setCalndarDays([]) : setCalndarDays([])
+    setDaysState(event.target.value)
+    setMonthState(event.target.id)
+
+    // calendarDays.length > 0 ? setCalndarDays([]) : setCalndarDays([])
+    setCalndarDays([])
 
     for(let i=1; i <= days; i++){
         let d= new Date(`${month} ${i}, 2022 01:15:00`)
@@ -93,41 +108,68 @@ function toggleAddEvent(event){
     addEventState? setDate(null):setDate(singleDay)
 
     setAddEventState(!addEventState)
-
-    console.log(date)
     
-
-
 }
 
-const createCalendar = calendarDays?.map((day, index)=>{
+function toggleSingleEvent(event){
+    const id = event.target.id
+    setSingleEvent(!singleEvent)
 
-    return(
-        <div key={day.id}>
+    !singleEvent ? setSingleEventData(calendarData.filter(event=>{return event._id === id})) : setSingleEventData([])
 
-            <div>{day.date}</div>
-            {day.date !==""?
-            <div>
-                {/* Kad napravim da pulla evente iz DB napraviti logiku da prikazuje odnosno ne prikazuje */}
-            <div>
+    console.log(singleEventData)
+}
 
-                {
-                    day.data.map(data=>{
-                        return(
-                            <p key="data.id">{data.title}</p>
-                        )
-                    })
-                }
+function deleteEvent(event){
+    const eventId = event.target.id
+    fetch(`/deleteevent/${eventId}`,{
+        method: 'POST',
+        mode:'cors'
+    })
+    .then(res=>res.json())
+    .then(data=>{
+        console.log(data)
+        data? render() : console.log(data)
+    })
+}
+ 
 
+
+    const createCalendar = calendarDays?.map((day, index)=>{
+    
+        return(
+            <div key={day.id}>
+    
+                <div>{day.date}</div>
+                {day.date !==""?
+                <div>
+                    {/* Kad napravim da pulla evente iz DB napraviti logiku da prikazuje odnosno ne prikazuje */}
+                <div>
+    
+                    {
+                        day.data.map(data=>{
+                            return(
+                                <div key={data._id}>
+                                    <button type="button" id={data._id} onClick={toggleSingleEvent}>{data.title}</button>
+                                    <button type="button" id={data._id} onClick={deleteEvent}>X</button>
+                                </div>
+
+                            )
+                        })
+                    }
+    
+                </div>
+                <button type="button" id={index} onClick={toggleAddEvent}>Add Event</button>
+                
+                </div>
+                :<div></div>}
+    
             </div>
-            <button type="button" id={index} onClick={toggleAddEvent}>Add Event</button>
-            
-            </div>
-            :<div></div>}
+        )
+    })
+    
 
-        </div>
-    )
-})
+ 
 
 
 
@@ -174,6 +216,14 @@ const createCalendar = calendarDays?.map((day, index)=>{
              eventPopUp={eventPopUp}
              setEventPopUp={setEventPopUp}
              />}
+
+             {singleEvent &&
+             <SingleEvent 
+                singleEventData={singleEventData}
+                toggleSingleEvent={toggleSingleEvent}
+                render={render}
+             />
+             }
         </div>
     )
 }
